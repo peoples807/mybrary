@@ -5,11 +5,11 @@ const Author = require('../models/author');
 // get all authors
 router.get('/', async (req, res) => {
     let searchOptions = {};
-    if (req.query.name != null && req.query.name !== ''){   // because it's a GET request, the parameters are stored in req.query
+    if (req.query.name != null && req.query.name !== ''){ // because it's a GET request, the parameters are stored in req.query
         searchOptions.name = new RegExp(req.query.name, 'i'); // RegExp treats the variable as a regular expression, 'i' for case insensitive
     }
     try {
-        const authors = await Author.find(searchOptons);
+        const authors = await Author.find(searchOptions);
         res.render('authors/index', { 
             authors: authors,
             searchOptions: req.query
